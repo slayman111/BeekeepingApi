@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_statuses
+      author: dev
+      changes:
+        - insert:
+            tableName: statuses
+            columns:
+              - column:
+                  name: name
+                  value: "CREATED"
+        - insert:
+            tableName: statuses
+            columns:
+              - column:
+                  name: name
+                  value: "DELIVERY"
+        - insert:
+            tableName: statuses
+            columns:
+              - column:
+                  name: name
+                  value: "FINISHED"
+        - insert:
+            tableName: statuses
+            columns:
+              - column:
+                  name: name
+                  value: "CANCELED"

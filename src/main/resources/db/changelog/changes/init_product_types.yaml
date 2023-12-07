@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: init_product_types
+      author: dev
+      changes:
+        - createTable:
+            tableName: product_types
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: product_types_pk
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    nullable: false

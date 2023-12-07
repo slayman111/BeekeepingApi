@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: init_requests
+      author: dev
+      changes:
+        - createTable:
+            tableName: requests
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: requests_pk
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: requests_users_fk
+                    references: users(id)
+              - column:
+                  name: product_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: requests_products_fk
+                    references: products(id)
+              - column:
+                  name: amount
+                  type: smallint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: requests_statuses_fk
+                    references: statuses(id)
+              - column:
+                  name: delivery_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false

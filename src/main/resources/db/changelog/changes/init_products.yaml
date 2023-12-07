@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: init_products
+      author: dev
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: products_pk
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: money
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_type_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: products_product_types_fk
+                    references: product_types(id)

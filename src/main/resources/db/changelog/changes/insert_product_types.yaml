@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_product_types
+      author: dev
+      changes:
+        - insert:
+            tableName: product_types
+            columns:
+              - column:
+                  name: name
+                  value: "BEE"
