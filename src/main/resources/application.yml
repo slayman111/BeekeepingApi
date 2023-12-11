@@ -2,7 +2,7 @@ spring:
   application:
     name: BeekeepingApi
   r2dbc:
-    url: r2dbc:pool:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:beekeping_db}
+    url: r2dbc:pool:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:beekeping_db}?initialSize=10&maxSize=10&acquireRetry=10&maxCreateConnectionTime=PT2S&maxAcquireTime=PT2.5S&maxIdleTime=PT180S&poolName=db-pool-beekeeping
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
   liquibase:
@@ -12,3 +12,12 @@ spring:
     password: ${DB_PASSWORD:postgres}
   datasource:
     driver-class-name: org.postgresql.Driver
+  jwt:
+    secret: ${JWT_SECRET:test-jwt-secret}
+    refresh: ${JWT_REFRESH:test-jwt-refresh }
+
+logging:
+  level:
+    reactor.netty.http.client.HttpClient: info
+    io.r2dbc.postgresql.QUERY: info
+    io.r2dbc.postgresql.PARAM: info

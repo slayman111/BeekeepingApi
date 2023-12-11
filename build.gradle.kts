@@ -18,13 +18,18 @@ repositories {
     mavenCentral()
 }
 
+val jwt_version = "3.12.0"
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("com.auth0:java-jwt:${jwt_version}")
     implementation("org.liquibase:liquibase-core")
     implementation("org.springframework:spring-jdbc")
     runtimeOnly("org.postgresql:postgresql")

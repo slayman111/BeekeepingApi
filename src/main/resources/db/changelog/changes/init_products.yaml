@@ -31,3 +31,8 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: products_product_types_fk
                     references: product_types(id)
+              - column:
+                  name: image
+                  type: blob
+                  constraints:
+                    nullable: true

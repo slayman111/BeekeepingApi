@@ -34,15 +34,14 @@ databaseChangeLog:
                   type: varchar(64)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: password
                   type: varchar(64)
                   constraints:
                     nullable: false
               - column:
-                  name: role_id
-                  type: int
+                  name: role
+                  type: varchar(64)
                   constraints:
                     nullable: false
-                    foreignKeyName: users_roles_fk
-                    references: roles(id)
