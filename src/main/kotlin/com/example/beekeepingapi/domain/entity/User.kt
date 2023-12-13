@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority
 @Table("users")
 data class User(
     @Id
-    val id: Int?,
+    val id: Int? = null,
     val fullName: String,
     val phoneNumber: String,
     val email: String,

@@ -1,9 +1,10 @@
-package com.example.beekeepingapi.service.security
+package com.example.beekeepingapi.service
 
 import com.example.beekeepingapi.domain.constant.Role
 import com.example.beekeepingapi.domain.dto.request.RegisterRequestDto
 import com.example.beekeepingapi.domain.entity.User
 import com.example.beekeepingapi.domain.repository.UserRepository
+import com.example.beekeepingapi.exception.HttpExceptionFactory
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -13,8 +14,12 @@ class RegisterService(
     private val passwordEncoder: PasswordEncoder
 ) {
 
-    suspend fun register(registerRequestDto: RegisterRequestDto) =
-        userRepository.save(
+    suspend fun register(registerRequestDto: RegisterRequestDto): User {
+        if (userRepository.findByLogin(registerRequestDto.login) != null) {
+            throw HttpExceptionFactory.loginAlreadyExists()
+        }
+
+        return userRepository.save(
             User(
                 id = null,
                 fullName = registerRequestDto.fullName,
@@ -25,5 +30,7 @@ class RegisterService(
                 role = Role.USER
             )
         )
+    }
+
 
 }

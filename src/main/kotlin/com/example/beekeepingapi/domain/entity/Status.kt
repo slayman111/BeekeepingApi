@@ -6,6 +6,6 @@ import org.springframework.data.relational.core.mapping.Table
 @Table("statuses")
 data class Status(
     @Id
-    val id: Int,
+    val id: Int? = null,
     val name: String,
 )

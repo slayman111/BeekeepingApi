@@ -6,6 +6,6 @@ import org.springframework.data.relational.core.mapping.Table
 @Table("product_types")
 data class ProductType(
     @Id
-    val id: Int,
+    val id: Int? = null,
     val name: String,
 )
