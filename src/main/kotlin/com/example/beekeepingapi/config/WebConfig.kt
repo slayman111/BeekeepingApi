@@ -33,7 +33,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer
 class WebConfig : WebFluxConfigurer {
 
     companion object {
-        val EXCLUDED_PATHS = arrayOf("/login", "/register", "/", "/static/**", "/index.html", "/favicon.ico")
+        val EXCLUDED_PATHS = arrayOf("/login", "/register", "/")
     }
 
     @Bean
