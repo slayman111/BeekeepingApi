@@ -13,8 +13,8 @@ import reactor.core.publisher.Mono
 class JWTServerAuthenticationSuccessHandler(private val jwtService: JWTService) : ServerAuthenticationSuccessHandler {
 
     companion object {
-        private const val FIFTEEN_MIN = 1000 * 60 * 15
         private const val FOUR_HOURS = 1000 * 60 * 60 * 4
+        private const val EIGHT_HOURS = 1000 * 60 * 60 * 8
     }
 
     override fun onAuthenticationSuccess(
@@ -26,8 +26,8 @@ class JWTServerAuthenticationSuccessHandler(private val jwtService: JWTService) 
         when (principal) {
             is User -> {
                 val roles = principal.authorities.map { it.authority }.toTypedArray()
-                val accessToken = jwtService.accessToken(principal.username, FIFTEEN_MIN, roles)
-                val refreshToken = jwtService.refreshToken(principal.username, FOUR_HOURS, roles)
+                val accessToken = jwtService.accessToken(principal.username, FOUR_HOURS, roles)
+                val refreshToken = jwtService.refreshToken(principal.username, EIGHT_HOURS, roles)
                 webFilterExchange?.exchange?.response?.headers?.set("Authorization", accessToken)
                 webFilterExchange?.exchange?.response?.headers?.set("JWT-Refresh-Token", refreshToken)
             }
