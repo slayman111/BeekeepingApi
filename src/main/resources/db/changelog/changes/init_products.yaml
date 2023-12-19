@@ -33,6 +33,6 @@ databaseChangeLog:
                     references: product_types(id)
               - column:
                   name: image
-                  type: blob
+                  type: bytea
                   constraints:
                     nullable: true

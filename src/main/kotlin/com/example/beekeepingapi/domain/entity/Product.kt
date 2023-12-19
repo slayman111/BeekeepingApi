@@ -10,6 +10,6 @@ data class Product(
     val id: Int? = null,
     val name: String,
     val price: BigDecimal,
-    val productTypeId: BigDecimal,
-    val image: List<Byte>? = emptyList(),
+    val productTypeId: Int,
+    val image: ByteArray? = null,
 )

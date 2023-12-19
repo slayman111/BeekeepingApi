@@ -7,5 +7,5 @@ data class GetProductResponseDto(
     val name: String,
     val price: BigDecimal,
     val productType: String,
-    val image: String? = null,
+    val image: ByteArray? = null,
 )

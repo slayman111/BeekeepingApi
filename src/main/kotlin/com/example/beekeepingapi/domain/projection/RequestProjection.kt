@@ -14,7 +14,7 @@ data class RequestProjection(
     val productName: String,
     val productPrice: BigDecimal,
     val productType: String,
-    val productImage: String?,
+    val productImage: ByteArray?,
     val requestAmount: Short,
     val requestDeliveryDate: Long,
     val requestCreatedDate: Long,
