@@ -28,6 +28,7 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: requests_products_fk
                     references: products(id)
+                    deleteCascade: true
               - column:
                   name: amount
                   type: smallint

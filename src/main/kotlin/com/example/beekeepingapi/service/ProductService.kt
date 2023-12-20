@@ -1,9 +1,12 @@
 package com.example.beekeepingapi.service
 
 import com.example.beekeepingapi.domain.dto.request.CreateProductRequestDto
+import com.example.beekeepingapi.domain.dto.response.GetProductResponseDto
 import com.example.beekeepingapi.domain.entity.Product
 import com.example.beekeepingapi.domain.repository.ProductRepository
 import com.fasterxml.jackson.databind.ObjectMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.reactive.awaitFirst
 import org.springframework.http.codec.multipart.FilePart
 import org.springframework.stereotype.Service
@@ -16,7 +19,7 @@ class ProductService(
     private val productRepository: ProductRepository
 ) {
 
-    suspend fun create(product: String, image: FilePart) {
+    suspend fun create(product: String, image: FilePart?) {
         val createProductRequest: CreateProductRequestDto =
             objectMapper.readValue(product, CreateProductRequestDto::class.java)
 
@@ -25,7 +28,7 @@ class ProductService(
                 name = createProductRequest.name,
                 price = createProductRequest.price,
                 productTypeId = createProductRequest.productTypeId,
-                image = image.toBytes()
+                image = image?.toBytes()
             )
         )
     }
@@ -41,4 +44,18 @@ class ProductService(
 
         return byteStream.toByteArray()
     }
+
+    suspend fun getAll(): Flow<GetProductResponseDto> =
+        productRepository.findAllProjected()
+            .map { product ->
+                GetProductResponseDto(
+                    id = product.id,
+                    name = product.name,
+                    price = product.price,
+                    productType = product.productType,
+                    image = product.image
+                )
+            }
+
+    suspend fun delete(id: Int) = productRepository.deleteById(id)
 }

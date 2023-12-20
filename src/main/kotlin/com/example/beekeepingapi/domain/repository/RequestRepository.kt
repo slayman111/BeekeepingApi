@@ -35,6 +35,6 @@ interface RequestRepository : CoroutineCrudRepository<Request, Int> {
     }
 
     @Query(FIND_ALL)
-    fun findAllProjected(): Flow<RequestProjection>
+    suspend fun findAllProjected(): Flow<RequestProjection>
 
 }
