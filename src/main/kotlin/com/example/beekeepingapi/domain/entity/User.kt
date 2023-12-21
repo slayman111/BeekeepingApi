@@ -1,6 +1,7 @@
 package com.example.beekeepingapi.domain.entity
 
 import com.example.beekeepingapi.domain.constant.Role
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.security.core.GrantedAuthority
@@ -13,6 +14,7 @@ data class User(
     val phoneNumber: String,
     val email: String,
     val login: String,
+    @get:JsonIgnore
     val password: String,
     val role: Role,
 ) : GrantedAuthority {

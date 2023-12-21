@@ -21,6 +21,7 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: requests_users_fk
                     references: users(id)
+                    deleteCascade: true
               - column:
                   name: product_id
                   type: int

@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_admin
+      author: dev
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: full_name
+                  value: "full_name"
+              - column:
+                  name: phone_number
+                  value: "89998882121"
+              - column:
+                  name: email
+                  value: "example@mail.com"
+              - column:
+                  name: login
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$JYnNOT86Tmxj61dpvK0lKuidPfWsxSXikCV6K9n3SQupwFcncLR6S"
+              - column:
+                  name: role
+                  value: "ADMIN"

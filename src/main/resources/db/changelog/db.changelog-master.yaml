@@ -13,3 +13,5 @@ databaseChangeLog:
       file: db/changelog/changes/insert_statuses.yaml
   - include:
       file: db/changelog/changes/insert_product_types.yaml
+  - include:
+      file: db/changelog/changes/insert_admin.yaml
