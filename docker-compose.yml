@@ -1,0 +1,33 @@
+version: '2.0'
+
+services:
+  beekeeping-db:
+    image: postgres
+    container_name: beekeeping-db
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    networks:
+      - backend
+
+  beekeeping-api:
+    image: beekeeping-api:latest
+    container_name: beekeeping-api
+    environment:
+      - DB_HOST=beekeeping-db
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - JWT_SECRET=472B4B6150645367566B5970337336763979244226452948404D635166546857
+      - JWT_REFRESH=472B4B6150645367566B5970337336763979244226452948404D635166546857
+    ports:
+      - '8080:8080'
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
