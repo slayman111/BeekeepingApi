@@ -15,7 +15,7 @@ class ProductController(
     private val productService: ProductService
 ) {
 
-    @GetMapping("admin/product")
+    @GetMapping("product")
     @ResponseStatus(HttpStatus.OK)
     suspend fun getAll(): Flow<GetProductResponseDto> = productService.getAll()
 
